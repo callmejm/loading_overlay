@@ -116,7 +116,19 @@ class _OverlayExtensionHelper {
     _overlayController.setOverlayVisible(_visible!, widget: _widget);
   }
 
+  void showWithTimer({Widget? widget, Duration? duration}) {
+    _widget = widget;
+    _visible = true;
+    _overlayController.setOverlayVisible(_visible!, widget: _widget);
+    if(duration != null){
+      Future.delayed(duration,(){
+        hide();
+      });
+    }
+  }
+
   void hide() {
+    if(!visible) return;
     _visible = false;
     _overlayController.setOverlayVisible(_visible!);
   }
